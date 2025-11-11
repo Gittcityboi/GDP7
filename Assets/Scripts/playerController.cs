@@ -34,11 +34,18 @@ public class playerController : MonoBehaviour
     public float roll_time = 0f;
     public float roll_cooltime = 4f;
 
+    public normalAttack normal_attack_data = null;
+    public MonoBehaviour normal_attack_script = null;
+
     // Start is called before the first frame update
     void Start()
     {
         normal_max_hp = hp;
         normal_max_mp = mp;
+        if(normal_attack_script != null)
+        {
+            changeNormalAttack(normal_attack_script);
+        }
     }
 
     // Update is called once per frame
@@ -137,6 +144,15 @@ public class playerController : MonoBehaviour
                 choiced_skill = 0;
             }
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(normal_attack_data != null)
+            {
+                normal_attack_data.UseAttack();
+            }
+            //Debug.Log(choiced_skill);
+        }
+        
         if (Input.GetMouseButtonDown(1))
         {
             if(skills[choiced_skill].GetComponent<skillSlot>().skill_data != null)
@@ -204,6 +220,11 @@ public class playerController : MonoBehaviour
         {
             hit_time = 0f;
         }
+    }
+
+    public void changeNormalAttack(MonoBehaviour normalAttackScript)
+    {
+        normal_attack_data = normalAttackScript as normalAttack;
     }
 
     public void HP_MP_UIupdate()
