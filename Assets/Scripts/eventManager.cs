@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class eventManager : MonoBehaviour
 {
-    public delegate void OnHitDelegate(GameObject other);
+    public delegate void OnHitDelegate(GameObject other, float damage);
     public event OnHitDelegate OnEnemyHitEvent;
 
-    public void InvokeEnemyHitEvent(GameObject other)
+    public delegate void OnPlayerHitDelegate(GameObject other, float damage);
+    public event OnPlayerHitDelegate OnPlayerHitEvent;
+
+    public void InvokeEnemyHitEvent(GameObject other, float damage)
     {
-        OnEnemyHitEvent?.Invoke(other);
+        OnEnemyHitEvent?.Invoke(other, damage);
     }
 
+    public void InvokeOnPlayerHitEvent(GameObject other, float damage)
+    {
+        OnPlayerHitEvent?.Invoke(other, damage);
+    }
 }

@@ -243,7 +243,8 @@ public class playerController : MonoBehaviour
                 //Debug.Log("dead");
                 return;
             }
-            hp -= collision.gameObject.GetComponent<enemyScript>().damage;
+            hp -= collision.gameObject.GetComponent<enemyAttack>().damage;
+            game_manager.GetComponent<eventManager>().InvokeOnPlayerHitEvent(this.gameObject, collision.gameObject.GetComponent<enemyScript>().damage);
             //Debug.Log("player hit");
             HP_MP_UIupdate();
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemyScript : MonoBehaviour
 {
     float max_hp = 100f;
-    float hp;
+    public float hp;
     public float speed = 1f;
     public float hit_time = 0f;
     public float hit_time_save = 0f;
@@ -51,7 +51,7 @@ public class enemyScript : MonoBehaviour
             hp -= other.GetComponent<playerAttack>().damage;
             hit_time = other.GetComponent<playerAttack>().hit_time;
             hit_time_save = other.GetComponent<playerAttack>().hit_time;
-            gameManager.GetComponent<eventManager>().InvokeEnemyHitEvent(this.gameObject);
+            gameManager.GetComponent<eventManager>().InvokeEnemyHitEvent(this.gameObject, other.GetComponent<playerAttack>().damage);
             //Debug.Log("hit");
             hp_bar.SetActive(true);
             if (hp <= 0)
@@ -81,7 +81,7 @@ public class enemyScript : MonoBehaviour
             hp -= other.GetComponent<playerAttack>().damage;
             hit_time = other.GetComponent<playerAttack>().hit_time;
             hit_time_save = other.GetComponent<playerAttack>().hit_time;
-            gameManager.GetComponent<eventManager>().InvokeEnemyHitEvent(this.gameObject);
+            gameManager.GetComponent<eventManager>().InvokeEnemyHitEvent(this.gameObject, other.GetComponent<playerAttack>().damage);
             //Debug.Log("hit");
             hp_bar.SetActive(true);
             if (hp <= 0)
