@@ -31,7 +31,7 @@ public class poisonSkillSupport : MonoBehaviour
         Destroy(this);
     }
 
-    void OnEnemyHitEvent_poison(GameObject other)
+    void OnEnemyHitEvent_poison(GameObject other, float damage)
     {
         if (other.GetComponent(poisonEffect.GetType()) == null)
         {
