@@ -244,7 +244,24 @@ public class playerController : MonoBehaviour
                 return;
             }
             hp -= collision.gameObject.GetComponent<enemyAttack>().damage;
-            game_manager.GetComponent<eventManager>().InvokeOnPlayerHitEvent(this.gameObject, collision.gameObject.GetComponent<enemyScript>().damage);
+            game_manager.GetComponent<eventManager>().InvokeOnPlayerHitEvent(this.gameObject, collision.gameObject.GetComponent<enemyAttack>().damage);
+            //Debug.Log("player hit");
+            HP_MP_UIupdate();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("enemy") && hit_time <= 0 && !invincibility)
+        {
+            hit_time = invincibility_hit_time;
+            if (hp <= 0)
+            {
+                //Debug.Log("dead");
+                return;
+            }
+            hp -= other.GetComponent<enemyAttack>().damage;
+            game_manager.GetComponent<eventManager>().InvokeOnPlayerHitEvent(this.gameObject, other.GetComponent<enemyAttack>().damage);
             //Debug.Log("player hit");
             HP_MP_UIupdate();
         }

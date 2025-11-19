@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 907469420745722893}
   - component: {fileID: 9208060109144485659}
   - component: {fileID: 4031249192691292511}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mana_attack
   m_TagString: attack
   m_Icon: {fileID: 0}
@@ -149,6 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   hit_time: 1
+  hit_count: -1
+  wall: 0
 --- !u!114 &4031249192691292511
 MonoBehaviour:
   m_ObjectHideFlags: 0

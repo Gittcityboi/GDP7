@@ -29,10 +29,12 @@ public class shieldSkill : MonoBehaviour,Skill
         {
             var support = game_manager.AddComponent(shieldCreat.GetType()) as shieldCreat;
             support.shield_slider_prefab = shield_slider_prefab;
+            Debug.Log("==null");
         }
         else
         {
             game_manager.GetComponent<shieldCreat>().reset();
+            Debug.Log("!=null");
         }
     }
 }

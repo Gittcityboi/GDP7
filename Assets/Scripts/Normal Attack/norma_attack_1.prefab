@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3560403570243442704}
   - component: {fileID: 5225057722096349637}
   - component: {fileID: 7613092784140616369}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: norma_attack_1
   m_TagString: attack
   m_Icon: {fileID: 0}
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   hit_time: 1
-  hit_count: -1
-  wall: 0
+  hit_count: 1
+  wall: 1
 --- !u!114 &7613092784140616369
 MonoBehaviour:
   m_ObjectHideFlags: 0
