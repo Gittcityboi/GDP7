@@ -25,8 +25,8 @@ public class dashSkill : MonoBehaviour, Skill
     }
     public void UseSkill()
     {
-        GameObject dash = Instantiate(dash_attack_prefab) as GameObject;
-        dash.transform.SetParent(player.transform, false);
+        GameObject dash = Instantiate(dash_attack_prefab, player.transform) as GameObject;
+        //dash.transform.SetParent(player.transform, false);
     }
 
     
