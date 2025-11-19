@@ -10,6 +10,12 @@ public class levelManager : MonoBehaviour
     public float player_exp = 0;
     public GameObject exp_bar;
 
+    public GameObject button1;
+    public GameObject button2;
+    public GameObject button3;
+    public GameObject button4;
+    public GameObject button5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +44,7 @@ public class levelManager : MonoBehaviour
     public void levelReward()
     {
         exp_bar.GetComponent<Slider>().value = player_exp / max_exp;
+
+
     }
 }
