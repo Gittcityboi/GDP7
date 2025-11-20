@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - wall
+  - exp
+  - gameManager
+  - attack
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -11,6 +16,10 @@ TagManager:
   - 
   - Water
   - UI
+  - Enemy
+  - EnemyAttack
+  - PlayerAttack
+  - Wall
   - 
   - 
   - 
@@ -24,10 +33,6 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - Layer 1
-  - Layer 2
-  - Layer 3
   - 
   - 
   - 

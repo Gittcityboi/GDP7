@@ -8,7 +8,8 @@ public class manaAttackSkill : MonoBehaviour, Skill
     public float cost { get; set; } = 1f;
     public int use_number { get; set; } = 3;
     public float shoting_power = 5;
-    public GameObject manaAttack_prefab;
+    public GameObject manaAttack_prefab; 
+    public string text { get; set; } = "마나 공격 - 마나를 최대 50소모하여 소모한 마나에 비례해 피해량이 증가합니다";
     GameObject player;
     // Start is called before the first frame update
     void Start()

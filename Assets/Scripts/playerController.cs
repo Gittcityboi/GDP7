@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class playerController : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class playerController : MonoBehaviour
 
     public normalAttack normal_attack_data = null;
     public MonoBehaviour normal_attack_script = null;
+
+    public TextMeshProUGUI text_box;
 
     // Start is called before the first frame update
     void Start()
@@ -199,6 +202,13 @@ public class playerController : MonoBehaviour
                 }
             }
         }
+        for (int i = 0; i < skills.Length; i++)
+        {
+            if (i == choiced_skill)
+            {
+                text_box.text = skills[i].GetComponent<skillSlot>().text;
+            }
+        }
         choiced_skill_change = choiced_skill;
 
         if (Input.GetKeyDown(KeyCode.E) && game_manager.GetComponent<gameManager>().time_distortion_system != 1)
@@ -264,6 +274,10 @@ public class playerController : MonoBehaviour
             game_manager.GetComponent<eventManager>().InvokeOnPlayerHitEvent(this.gameObject, other.GetComponent<enemyAttack>().damage);
             //Debug.Log("player hit");
             HP_MP_UIupdate();
+        }
+        if (other.CompareTag("wall"))
+        {
+            this.gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 

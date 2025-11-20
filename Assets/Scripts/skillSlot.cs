@@ -8,11 +8,14 @@ public class skillSlot : MonoBehaviour
     public GameObject cooltime_img;
     public GameObject player;
     public GameObject game_manager;
+    
     public Sprite skill_img;
     public Skill skill_data = null;
     public float cooltime = 0;
     public int use_count;
     public int slot_num;
+
+    public string text;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +50,7 @@ public class skillSlot : MonoBehaviour
         cooltime = 0;
         cooltime_img.GetComponent<Image>().fillAmount = cooltime / skill_data.cooltime;
         use_count = skill_data.use_number;
+        text = skill_data.text + "  \n남은 횟수 : " + use_count.ToString() + "  소모 마나 : " + skill_data.cost.ToString();
     }
 
     public void subedSkill()
@@ -56,6 +60,7 @@ public class skillSlot : MonoBehaviour
         cooltime_img.GetComponent<Image>().fillAmount = 1;
         skill_data = null;
         Destroy(player.GetComponent<playerController>().skillsAddingObject[slot_num]);
+        text = "";
     }
 
     public void useSkill()
@@ -71,7 +76,8 @@ public class skillSlot : MonoBehaviour
                 if(use_count > 0)
                 {
                     use_count -= 1;
-                    if(use_count == 0)
+                    text = skill_data.text + "  \n남은 횟수 : " + use_count.ToString() + "  소모 마나 : " + skill_data.cost.ToString();
+                    if (use_count == 0)
                     {
                         subedSkill();
                     }

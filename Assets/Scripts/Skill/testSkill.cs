@@ -8,6 +8,7 @@ public class testSkill : MonoBehaviour, Skill
     public float cooltime { get; set; } = 3f;
     public float cost { get; set; } = 3f;
     public int use_number { get; set; } = 3;
+    public string text { get; set; } = "";
     // Start is called before the first frame update
     void Start()
     {

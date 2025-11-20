@@ -8,6 +8,7 @@ public class shieldSkill : MonoBehaviour,Skill
     public float cooltime { get; set; } = 3f;
     public float cost { get; set; } = 3f;
     public int use_number { get; set; } = 3;
+    public string text { get; set; } = "보호막 - 일정시간 동안 유지되는 보호막을 생성합니다";
     public GameObject game_manager;
     public GameObject shield_slider_prefab;
     public MonoBehaviour shieldCreat;

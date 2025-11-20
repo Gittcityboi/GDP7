@@ -4,4 +4,5 @@ public interface Skill
     float cooltime { get; }  // 읽기 전용 프로퍼티
     int use_number { get; }   // 읽기 전용 프로퍼티
     float cost { get; }   // 읽기 전용 프로퍼티
+    string text { get; }   // 읽기 전용 프로퍼티
 }
