@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6056511542485561349}
   - component: {fileID: 6056511542485561348}
   - component: {fileID: 6056511542485561355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bomb_prefad
   m_TagString: attack
   m_Icon: {fileID: 0}
