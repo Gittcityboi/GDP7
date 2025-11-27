@@ -16,6 +16,7 @@ public class skillSlot : MonoBehaviour
     public int slot_num;
 
     public string text;
+    public RawImage icon;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,10 @@ public class skillSlot : MonoBehaviour
         cooltime_img.GetComponent<Image>().fillAmount = cooltime / skill_data.cooltime;
         use_count = skill_data.use_number;
         text = skill_data.text + "  \n남은 횟수 : " + use_count.ToString() + "  소모 마나 : " + skill_data.cost.ToString();
+        icon.texture = skill_data.skill_icon;
+        Color c = icon.color;
+        c.a = 1;
+        icon.color = c;
     }
 
     public void subedSkill()
@@ -61,6 +66,9 @@ public class skillSlot : MonoBehaviour
         skill_data = null;
         Destroy(player.GetComponent<playerController>().skillsAddingObject[slot_num]);
         text = "";
+        Color c = icon.color;
+        c.a = 0;
+        icon.color = c;
     }
 
     public void useSkill()

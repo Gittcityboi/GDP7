@@ -42,7 +42,9 @@ public class playerNormalAttack1 : MonoBehaviour, normalAttack
             point2 = new Vector2(point2.x * shoting_power, point2.y * shoting_power);
 
             GameObject attack = Instantiate(normal_attack1_prefab, player.transform.position, Quaternion.identity) as GameObject;
+            float angle = Mathf.Atan2(point2.y, point2.x) * Mathf.Rad2Deg;
 
+            attack.transform.rotation = Quaternion.Euler(0, 0, angle);
             //Rigidbody2D rb = attack.GetComponent<Rigidbody2D>();
             //rb.velocity = point2;
             attack.GetComponent<Rigidbody2D>().AddForce(point2, ForceMode2D.Impulse);

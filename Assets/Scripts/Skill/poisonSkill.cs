@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class poisonSkill : MonoBehaviour, Skill
 {
+    public Texture icon;
+    public Texture skill_icon { get; set; }
     public GameObject game_manager;
     public MonoBehaviour poisonEffectAddSub;
     public MonoBehaviour poisonEffect;
@@ -15,6 +17,7 @@ public class poisonSkill : MonoBehaviour, Skill
     // Start is called before the first frame update
     void Start()
     {
+        skill_icon = icon;
         game_manager = GameObject.FindWithTag("gameManager");
     }
 

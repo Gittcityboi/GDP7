@@ -17,7 +17,7 @@ public class skillCardUpDown : MonoBehaviour
     {
         if(choiced)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0f, 0), 0.05f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 20f, 0), 0.05f);
         }
         else
         {

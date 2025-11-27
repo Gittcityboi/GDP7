@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class testSkill : MonoBehaviour, Skill
 {
+    public Texture skill_icon { get; set; }
     public float cooltime { get; set; } = 3f;
     public float cost { get; set; } = 3f;
     public int use_number { get; set; } = 3;

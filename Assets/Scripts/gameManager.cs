@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class gameManager : MonoBehaviour
 
     public float mp_recover = 1;
     public float mp_cost = 2;
+
+    public float maxAlpha = 0.3f;
+
+    public float duration = 2f;
+
+    public Image ACtargetImage;
+    
+    public Image DEtargetImage;
 
     // Start is called before the first frame update
     void Start()
@@ -75,38 +84,79 @@ public class gameManager : MonoBehaviour
                 accelerationSystemOff();
             }
         }
+        /*
         for(int i = 0; i < TDS_ui.Length; i++)
         {
             if(i == time_distortion_system + 1)
             {
-                TDS_ui[i].SetActive(true);
+                //TDS_ui[i].SetActive(true);
             }
             else
             {
-                TDS_ui[i].SetActive(false);
+                //TDS_ui[i].SetActive(false);
             }
         }
+        */
     }
 
     public void accelerationSystemOn()
     {
         speed_applicable_figures += acceleration;
         cooltime_applicable_figures += acceleration;
+        StartCoroutine(FadeIn(ACtargetImage));
     }
     public void accelerationSystemOff()
     {
         speed_applicable_figures -= acceleration;
         cooltime_applicable_figures -= acceleration;
+        StartCoroutine(FadeOut(ACtargetImage));
     }
     public void decelerationSystemOn()
     {
         speed_applicable_figures += deceleration;
         cooltime_applicable_figures += deceleration;
+        StartCoroutine(FadeIn(DEtargetImage));
     }
     public void decelerationSystemOff()
     {
         speed_applicable_figures -= deceleration;
         cooltime_applicable_figures -= deceleration;
+        StartCoroutine(FadeOut(DEtargetImage));
     }
+    private IEnumerator FadeIn(Image targetImage)
+    {
+        float elapsed = 0f;
+        Color c = targetImage.color;
 
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Clamp01(elapsed / duration) * maxAlpha; // 0~maxAlpha
+            c.a = alpha;
+            targetImage.color = c;
+            yield return null;
+        }
+
+        // 마지막 값 보정
+        c.a = maxAlpha;
+        targetImage.color = c;
+    }
+    private IEnumerator FadeOut(Image targetImage)
+    {
+        float elapsed = duration;
+        Color c = targetImage.color;
+
+        while (elapsed > 0)
+        {
+            elapsed -= Time.deltaTime;
+            float alpha = Mathf.Clamp01(elapsed / duration) * maxAlpha; // 0~maxAlpha
+            c.a = alpha;
+            targetImage.color = c;
+            yield return null;
+        }
+
+        // 마지막 값 보정
+        c.a = 0;
+        targetImage.color = c;
+    }
 }

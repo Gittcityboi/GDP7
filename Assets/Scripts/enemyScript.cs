@@ -12,6 +12,7 @@ public class enemyScript : MonoBehaviour
     public GameObject hit_object = null;
     public GameObject hp_bar;
     public GameObject hp_bar_red;
+    public GameObject exp;
     GameObject player;
     GameObject gameManager;
 
@@ -23,6 +24,11 @@ public class enemyScript : MonoBehaviour
     public float attack_time = 2f;
     Vector2 attack_direction;
 
+    public Animator anim;
+    public SpriteRenderer image;
+
+    public BoxCollider2D box;
+    bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +40,21 @@ public class enemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(dead)
+        {
+            return;
+        }
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.y + this.transform.position.x /10);
         Vector2 direction = player.transform.position - transform.position;
         Vector2 move_vector = direction.normalized;
+        if(move_vector.x > 0)
+        {
+            image.flipX = false;
+        }
+        else
+        {
+            image.flipX = true;
+        }
         if(Vector3.Distance(player.transform.position, this.transform.position) > 4 || enemy_type == 0)
         {
             transform.Translate(move_vector * speed);
@@ -63,6 +81,9 @@ public class enemyScript : MonoBehaviour
                 GameObject attack = Instantiate(enemy_prefab, this.transform.position, Quaternion.identity) as GameObject;
                 Vector2 point2 = new Vector2(attack_direction.x * 4, attack_direction.y * 4);
                 attack.GetComponent<Rigidbody2D>().AddForce(point2, ForceMode2D.Impulse);
+                float angle = Mathf.Atan2(point2.y, point2.x) * Mathf.Rad2Deg;
+
+                attack.transform.rotation = Quaternion.Euler(0, 0, angle);
                 //Debug.Log(point2);
                 attack_time = 2;
             }
@@ -102,6 +123,7 @@ public class enemyScript : MonoBehaviour
             hit_time_save = other.GetComponent<playerAttack>().hit_time;
             gameManager.GetComponent<eventManager>().InvokeEnemyHitEvent(this.gameObject, other.GetComponent<playerAttack>().damage);
             //Debug.Log("hit");
+            anim.SetTrigger("Hit");
             hp_bar.SetActive(true);
             if (hp <= 0)
             {
@@ -109,6 +131,7 @@ public class enemyScript : MonoBehaviour
                 hp_bar_red.transform.localScale = new Vector3(hp / max_hp, 1, 1);
                 hp_bar_red.transform.localPosition = new Vector3((hp / max_hp - 1) / 2, 0, -2);
                 //Debug.Log("dead");
+                StartCoroutine(DEAD());
                 return;
             }
             hp_bar_red.transform.localScale = new Vector3(hp / max_hp, 1, 1);
@@ -139,6 +162,7 @@ public class enemyScript : MonoBehaviour
                 hp_bar_red.transform.localScale = new Vector3(hp / max_hp, 1, 1);
                 hp_bar_red.transform.localPosition = new Vector3((hp / max_hp - 1) / 2, 0, -2);
                 //Debug.Log("dead");
+                StartCoroutine(DEAD());
                 return;
             }
             hp_bar_red.transform.localScale = new Vector3(hp / max_hp, 1, 1);
@@ -158,9 +182,20 @@ public class enemyScript : MonoBehaviour
             hp_bar_red.transform.localScale = new Vector3(hp / max_hp, 1, 1);
             hp_bar_red.transform.localPosition = new Vector3((hp / max_hp - 1) / 2, 0, -2);
             //Debug.Log("dead");
+            StartCoroutine(DEAD());
             return;
         }
         hp_bar_red.transform.localScale = new Vector3(hp / max_hp, 1, 1);
         hp_bar_red.transform.localPosition = new Vector3((hp / max_hp - 1) / 2, 0, -2);
+    }
+
+    private IEnumerator DEAD()
+    {
+        dead = true;
+        box.enabled = false;
+        Instantiate(exp, this.transform.position, Quaternion.identity);
+        anim.SetTrigger("Dead");
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
     }
 }
