@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 907469420745722893}
   - component: {fileID: 9208060109144485659}
   - component: {fileID: 4031249192691292511}
+  - component: {fileID: 5299014799987648200}
   m_Layer: 8
   m_Name: mana_attack
   m_TagString: attack
@@ -163,6 +164,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51fb4ce53d8b3b94f8ce4b2485e13c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5299014799987648200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728886717797552441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58acbfd96016c8a40b8e2726e331ffcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8453391130187965343

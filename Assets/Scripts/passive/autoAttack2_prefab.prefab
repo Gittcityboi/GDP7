@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5338578901525210042}
   - component: {fileID: 5338578901525210043}
   - component: {fileID: 5338578901525210040}
+  - component: {fileID: 7515326270226058857}
   m_Layer: 8
   m_Name: autoAttack2_prefab
   m_TagString: attack
@@ -152,6 +153,18 @@ MonoBehaviour:
   hit_time: 1
   hit_count: -1
   wall: 0
+--- !u!114 &7515326270226058857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5338578901525210041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58acbfd96016c8a40b8e2726e331ffcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6147845089438920830
 GameObject:
   m_ObjectHideFlags: 0

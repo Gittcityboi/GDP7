@@ -26,8 +26,10 @@ public class gameManager : MonoBehaviour
     public float duration = 2f;
 
     public Image ACtargetImage;
+    public Image ACtargetImage2;
     
     public Image DEtargetImage;
+    public Image DEtargetImage2;
 
     // Start is called before the first frame update
     void Start()
@@ -103,27 +105,29 @@ public class gameManager : MonoBehaviour
     {
         speed_applicable_figures += acceleration;
         cooltime_applicable_figures += acceleration;
-        StartCoroutine(FadeIn(ACtargetImage));
+        StartCoroutine(FadeIn(ACtargetImage, maxAlpha));
+        StartCoroutine(FadeOut(ACtargetImage2, 1));
     }
     public void accelerationSystemOff()
     {
         speed_applicable_figures -= acceleration;
         cooltime_applicable_figures -= acceleration;
-        StartCoroutine(FadeOut(ACtargetImage));
+        StartCoroutine(FadeOut(ACtargetImage, maxAlpha));
     }
     public void decelerationSystemOn()
     {
         speed_applicable_figures += deceleration;
         cooltime_applicable_figures += deceleration;
-        StartCoroutine(FadeIn(DEtargetImage));
+        StartCoroutine(FadeIn(DEtargetImage, maxAlpha));
+        StartCoroutine(FadeOut(DEtargetImage2, 1));
     }
     public void decelerationSystemOff()
     {
         speed_applicable_figures -= deceleration;
         cooltime_applicable_figures -= deceleration;
-        StartCoroutine(FadeOut(DEtargetImage));
+        StartCoroutine(FadeOut(DEtargetImage, maxAlpha));
     }
-    private IEnumerator FadeIn(Image targetImage)
+    private IEnumerator FadeIn(Image targetImage, float Alpha)
     {
         float elapsed = 0f;
         Color c = targetImage.color;
@@ -131,7 +135,7 @@ public class gameManager : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float alpha = Mathf.Clamp01(elapsed / duration) * maxAlpha; // 0~maxAlpha
+            float alpha = Mathf.Clamp01(elapsed / duration) * Alpha; // 0~maxAlpha
             c.a = alpha;
             targetImage.color = c;
             yield return null;
@@ -141,7 +145,7 @@ public class gameManager : MonoBehaviour
         c.a = maxAlpha;
         targetImage.color = c;
     }
-    private IEnumerator FadeOut(Image targetImage)
+    private IEnumerator FadeOut(Image targetImage, float Alpha)
     {
         float elapsed = duration;
         Color c = targetImage.color;
@@ -149,7 +153,7 @@ public class gameManager : MonoBehaviour
         while (elapsed > 0)
         {
             elapsed -= Time.deltaTime;
-            float alpha = Mathf.Clamp01(elapsed / duration) * maxAlpha; // 0~maxAlpha
+            float alpha = Mathf.Clamp01(elapsed / duration) * Alpha; // 0~maxAlpha
             c.a = alpha;
             targetImage.color = c;
             yield return null;

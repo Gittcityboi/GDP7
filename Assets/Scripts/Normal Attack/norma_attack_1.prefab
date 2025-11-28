@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3560403570243442704}
   - component: {fileID: 5225057722096349637}
   - component: {fileID: 7613092784140616369}
+  - component: {fileID: 4685283497890125428}
   m_Layer: 8
   m_Name: norma_attack_1
   m_TagString: attack
@@ -163,6 +164,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bcb76ece3ede8044b2d6dad347ed0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4685283497890125428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201115760227024275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58acbfd96016c8a40b8e2726e331ffcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6983950224894238482
