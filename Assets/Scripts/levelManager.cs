@@ -13,8 +13,6 @@ public class levelManager : MonoBehaviour
     public GameObject button1;
     public GameObject button2;
     public GameObject button3;
-    public GameObject button4;
-    public GameObject button5;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +31,7 @@ public class levelManager : MonoBehaviour
         player_exp += amount;
         exp_bar.GetComponent<Slider>().value = player_exp / max_exp;
 
-        if(player_exp / max_exp > 1)
+        if(player_exp / max_exp >= 1)
         {
             player_exp -= max_exp;
             level++;
@@ -45,6 +43,9 @@ public class levelManager : MonoBehaviour
     {
         exp_bar.GetComponent<Slider>().value = player_exp / max_exp;
 
+        if (button1 != null) button1.SetActive(true);
+        if (button2 != null) button2.SetActive(true);
+        if (button3 != null) button3.SetActive(true);
 
     }
 }
