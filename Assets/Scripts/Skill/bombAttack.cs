@@ -5,6 +5,7 @@ using UnityEngine;
 public class bombAttack : MonoBehaviour
 {
     float valid_time = 3f;
+    public GameObject bomb;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,8 @@ public class bombAttack : MonoBehaviour
                 this.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
                 this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 valid_time = 0.1f;
+                bomb.SetActive(true);
+                
             }
             else
             {

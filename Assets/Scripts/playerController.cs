@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class playerController : MonoBehaviour
 {
@@ -37,6 +38,11 @@ public class playerController : MonoBehaviour
     public normalAttack normal_attack_data = null;
     public MonoBehaviour normal_attack_script = null;
 
+    public TextMeshProUGUI text_box;
+
+    public Animator anim;
+    public SpriteRenderer image;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +75,22 @@ public class playerController : MonoBehaviour
             move_vector.x += 1;
         }
         move_vector = move_vector.normalized;
+        if(move_vector.x == 0 && move_vector.y == 0)
+        {
+            anim.SetBool("run", false);
+        }
+        else
+        {
+            anim.SetBool("run", true);
+        }
+        if (move_vector.x > 0)
+        {
+            image.flipX = false;
+        }
+        else if(move_vector.x < 0)
+        {
+            image.flipX = true;
+        }
         transform.Translate(move_vector * player_speed * game_manager.GetComponent<gameManager>().speed_applicable_figures);
 
         if (Input.GetKeyDown(KeyCode.Space) && roll_time == 0)
@@ -199,6 +221,13 @@ public class playerController : MonoBehaviour
                 }
             }
         }
+        for (int i = 0; i < skills.Length; i++)
+        {
+            if (i == choiced_skill)
+            {
+                text_box.text = skills[i].GetComponent<skillSlot>().text;
+            }
+        }
         choiced_skill_change = choiced_skill;
 
         if (Input.GetKeyDown(KeyCode.E) && game_manager.GetComponent<gameManager>().time_distortion_system != 1)
@@ -265,6 +294,10 @@ public class playerController : MonoBehaviour
             //Debug.Log("player hit");
             HP_MP_UIupdate();
         }
+        if (other.CompareTag("wall"))
+        {
+            this.gameObject.GetComponent<Collider2D>().isTrigger = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -273,6 +306,7 @@ public class playerController : MonoBehaviour
         {
             //Debug.Log("exp");
             game_manager.GetComponent<levelManager>().gainExp(other.GetComponent<experience>().exp);
+            Destroy(other.gameObject);
         }
     }
 

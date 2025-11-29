@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class resetCooltimeSkill : MonoBehaviour,Skill
 {
+    public Texture icon;
+    public Texture skill_icon { get; set; }
     public float cooltime { get; set; } = 3f;
     public float cost { get; set; } = 3f;
     public int use_number { get; set; } = 3;
+    public string text { get; set; } = "쿨타임 초기화 - 이 스킬 이외의 스킬의 쿨타임을 초기화합니다";
     GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        skill_icon = icon;
         player = GameObject.FindWithTag("Player");
     }
 

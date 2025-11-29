@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class bombSkill : MonoBehaviour,Skill
 {
+    public Texture icon;
+    public Texture skill_icon { get; set; }
     public float cooltime { get; set; } = 3f;
     public float cost { get; set; } = 3f;
     public int use_number { get; set; } = 3;
     public float shoting_power = 3;
     public GameObject bomb_prefab;
+    public string text { get; set; } = "폭탄 - 일정시간 후에 데미지를 입히는 투사체를 발사합니다";
     GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        skill_icon = icon;
         player = GameObject.FindWithTag("Player");
     }
 

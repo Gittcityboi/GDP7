@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class poisonSkill : MonoBehaviour, Skill
 {
+    public Texture icon;
+    public Texture skill_icon { get; set; }
     public GameObject game_manager;
     public MonoBehaviour poisonEffectAddSub;
     public MonoBehaviour poisonEffect;
@@ -11,9 +13,11 @@ public class poisonSkill : MonoBehaviour, Skill
     public float cooltime { get; set; } = 3f;
     public float cost { get; set; } = 3f;
     public int use_number { get; set; } = 3;
+    public string text { get; set; } = "부식 - 일정 시간 동안 플레이어의 스킬에 부식 속성을 추가 합니다";
     // Start is called before the first frame update
     void Start()
     {
+        skill_icon = icon;
         game_manager = GameObject.FindWithTag("gameManager");
     }
 
